@@ -24,8 +24,7 @@ class Solution(object):
             residue=sum//10
             r.val=sum%10
             if l1 or l2 or residue:
-                new=ListNode()
-                r.next=new
+                r.next=ListNode()
                 r=r.next
             else:
                 break
