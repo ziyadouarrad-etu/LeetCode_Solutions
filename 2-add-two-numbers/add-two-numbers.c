@@ -10,7 +10,7 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
     struct ListNode* p=l1;
     struct ListNode* q=l2;
     struct ListNode* r=result;
-    int sum, residue=0, dec;
+    int sum, residue=0;
 
     while (p || q || residue){
         sum=residue;
