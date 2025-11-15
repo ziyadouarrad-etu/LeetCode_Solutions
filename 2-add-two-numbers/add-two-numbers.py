@@ -13,7 +13,7 @@ class Solution(object):
         result=ListNode()
         r=result
         residue=0
-        while True:
+        while l1 or l2 or residue:
             sum=residue
             if l1:
                 sum+=l1.val
@@ -22,13 +22,9 @@ class Solution(object):
                 sum+=l2.val
                 l2=l2.next
             residue=sum//10
-            r.val=sum%10
-            if l1 or l2 or residue:
-                r.next=ListNode()
-                r=r.next
-            else:
-                break
-        return result
+            r.next=ListNode(sum%10)
+            r=r.next
+        return result.next
 
 
         
