@@ -4,23 +4,16 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        max=0
-        f=1
-        for k in range(1,len(s)+1):
-            for i in range(len(s)-k+1):
-                f=1
-                temp=set()
-                for j in range(i, i+k):
-                    if s[j] not in temp:
-                        temp.add(s[j])
-                    else:
-                        f=0
-                if f:
-                    max=k
-                    break
-            if not f:
-                break
-        return max
+        temp=set()
+        deb, fin = 0, 0
+        max_len=0
+        while fin<len(s):
+            if s[fin] not in temp:
+                temp.add(s[fin])
+                fin+=1
+            else:                
+                temp.remove(s[deb])
+                deb+=1
+            max_len=max(max_len, fin-deb)
 
-
-        
+        return max_len
