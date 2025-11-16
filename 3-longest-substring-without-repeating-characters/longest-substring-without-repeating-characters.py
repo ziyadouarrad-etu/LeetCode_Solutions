@@ -11,9 +11,10 @@ class Solution(object):
             if s[fin] not in temp:
                 temp.add(s[fin])
                 fin+=1
+                max_len=max(max_len, fin-deb)
             else:                
                 temp.remove(s[deb])
                 deb+=1
-            max_len=max(max_len, fin-deb)
+
 
         return max_len
