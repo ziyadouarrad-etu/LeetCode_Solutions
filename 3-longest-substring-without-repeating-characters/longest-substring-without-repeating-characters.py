@@ -15,6 +15,4 @@ class Solution(object):
             else:                
                 temp.remove(s[deb])
                 deb+=1
-
-
         return max_len
