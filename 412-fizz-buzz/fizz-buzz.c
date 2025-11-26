@@ -7,7 +7,7 @@ char** fizzBuzz(int n, int* returnSize) {
 
     for (int i = 1; i <= n; i++) {
         result[i-1]=malloc(9);
-        if (!(i % 5) && !(i % 3)) {
+        if (!(i % 15)) {
             sprintf(result[i-1], "FizzBuzz");
         }
         else if (!(i%3)){
