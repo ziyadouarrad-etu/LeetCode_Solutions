@@ -11,7 +11,7 @@ class Solution:
         a = 1
         b = n
         while True:
-            c = (a + b) // 2
+            c = a + (b - a) // 2
             if guess(c) == 0:
                 return c
             elif guess(c) == 1:
