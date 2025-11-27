@@ -2,9 +2,9 @@
 // bool isBadVersion(int version);
 
 int firstBadVersion(int n) {
-    long a = 1, b = n, c;
+    int a = 1, b = n, c;
     while (a < b) {
-        c = (a + b) / 2;
+        c = a + (b - a) / 2;
         if (isBadVersion(c))
             b = c;
         else
