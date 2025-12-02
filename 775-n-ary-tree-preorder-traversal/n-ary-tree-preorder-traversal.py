@@ -8,14 +8,11 @@ class Node:
 
 
 class Solution:
-    def helper(self, root: Optional[TreeNode]) -> List[int]:
-        if not root:
-            return self.result
-        self.result.append(root.val)
-        for child in root.children:
-            self.helper(child)
-        return self.result
-
     def preorder(self, root: "Node") -> List[int]:
-        self.result = []
-        return self.helper(root)
+        result = []
+        if not root:
+            return result
+        result.extend([root.val])
+        for child in root.children:
+            result.extend(self.preorder(child))
+        return result
