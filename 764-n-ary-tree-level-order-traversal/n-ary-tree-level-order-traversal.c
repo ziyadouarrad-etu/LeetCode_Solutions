@@ -49,8 +49,5 @@ int** levelOrder(struct Node* root, int* returnSize, int** returnColumnSizes) {
         }
         curr[i] = NULL;
     }
-    free(curr);
-    free(next);
-    free(temp);
     return result;
 }
