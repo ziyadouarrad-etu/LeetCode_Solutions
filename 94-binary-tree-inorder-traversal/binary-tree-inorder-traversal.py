@@ -5,7 +5,8 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    result=[]
+    result = []
+
     def helper(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return self.result
@@ -15,5 +16,5 @@ class Solution:
         return self.result
 
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        self.result=[]
+        self.result = []
         return self.helper(root)
