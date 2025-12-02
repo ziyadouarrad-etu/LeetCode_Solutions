@@ -27,5 +27,5 @@ class Solution:
                     temp.append(child.val)
             if temp:
                 result.append(temp)
-            curr = next_level[:]
+            curr = next_level
         return result
