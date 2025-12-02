@@ -15,18 +15,17 @@ class Solution:
 
         # Initialize lists that will be used as well as the result list
         curr = [root]
-        childs = []
         result = [[root.val]]
 
         # Loop through all nodes in the current level getting there values and there children
         while curr:
             temp = []
+            next_level = []
             for node in curr:
                 for child in node.children:
-                    childs.append(child)
+                    next_level.append(child)
                     temp.append(child.val)
             if temp:
                 result.append(temp)
-            curr = childs[:]
-            childs=[]
+            curr = next_level[:]
         return result
