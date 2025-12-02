@@ -28,5 +28,5 @@ class Solution:
             if temp:
                 result.append(temp)
             curr = childs[:]
-            childs.clear()
+            childs=[]
         return result
