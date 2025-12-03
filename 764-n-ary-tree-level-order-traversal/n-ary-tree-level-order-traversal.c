@@ -14,40 +14,37 @@
  * caller calls free().
  */
 int** levelOrder(struct Node* root, int* returnSize, int** returnColumnSizes) {
+    // Malloc necessary arrays
     int** result = malloc(1000 * sizeof(int*));
     int* columnSizes = malloc(1000 * sizeof(int));
     *returnColumnSizes = columnSizes;
 
-    struct Node** curr = malloc(10001 * sizeof(struct Node*));
-    struct Node** next = malloc(10001 * sizeof(struct Node*));
-    int* temp = malloc(10000 * sizeof(int));
-    int i, j, k = 0, c;
-
+    // Initialize *returnSize and handle empty tree edge case
     *returnSize = 0;
     if (!root)
         return result;
 
-    curr[0] = root;
-    curr[1] = NULL;
-    while (curr[0]) {
-        c = 0;
-        for (i = 0; curr[i]; i++) {
-            temp[i] = curr[i]->val;
-            for (j = 0; j < curr[i]->numChildren; j++) {
-                next[c++] = (curr[i]->children)[j];
+    /* In this solution we will use a queue to keep track of children
+    The logic is to that in each iteration we will have the current level nodes
+    in the queue, the when a node is treated (its val is gathered and all its
+    children added to end of queue), we will we will move forward to the next
+    node in the queue.
+    */
+    struct Node** queue = malloc(10001 * sizeof(struct Node*));
+    int head = 0, tail = 0, i, j, temp;
+    queue[tail++] = root;
+    while (head < tail) {
+        columnSizes[*returnSize] = tail - head;
+        result[*returnSize] = malloc(columnSizes[*returnSize] * sizeof(int));
+        temp = tail;
+        for (i = head; i < temp; i++) {
+            result[*returnSize][i - head] = queue[i]->val;
+            for (j = 0; j < queue[i]->numChildren; j++) {
+                queue[tail++] = queue[i]->children[j];
             }
-            next[c] = NULL;
         }
-
-        result[k] = malloc(i * sizeof(int));
-        for (j = 0; j < i; j++)
-            result[k][j] = temp[j];
-        (*returnColumnSizes)[k++] = i;
+        head = i;
         (*returnSize)++;
-        for (i = 0; next[i]; i++) {
-            curr[i] = next[i];
-        }
-        curr[i] = NULL;
     }
     return result;
 }
