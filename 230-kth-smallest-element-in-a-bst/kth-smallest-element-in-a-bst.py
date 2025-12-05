@@ -5,16 +5,16 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def helper(self, root: Optional[TreeNode], k):
-        if not root or not k:
+    def helper(self, root: Optional[TreeNode]):
+        if not root or not self.k:
             return
-        self.helper(root.left, k)
+        self.helper(root.left)
         if self.k:
             self.a = root.val
             self.k -= 1
-            self.helper(root.right, k)
+            self.helper(root.right)
 
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         self.k = k
-        self.helper(root, k)
+        self.helper(root)
         return self.a
