@@ -12,15 +12,9 @@ class Solution:
             return False
         if p.val != q.val:
             return False
-        if (p.left and not q.left) or (p.right and not q.right):
-            return False
-        if (q.left and not p.left) or (q.right and not p.right):
-            return False
-        bool1, bool2 = True, True
-        if p.left:
-            bool1 = self.isSameTree(p.left, q.left)
-        if p.right:
-            bool2 = self.isSameTree(p.right, q.right)
+
+        bool1 = self.isSameTree(p.left, q.left)
+        bool2 = self.isSameTree(p.right, q.right)
         return bool1 and bool2
 
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
