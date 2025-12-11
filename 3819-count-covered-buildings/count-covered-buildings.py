@@ -16,7 +16,7 @@ class Solution:
         for x, l in dx.items():
             l.sort()
             if len(l) > 2:
-                for y in l[1 : len(l) - 1]:
+                for y in l[1:-1]:
                     dy[y].sort()
                     result += (
                         len(dy[y]) > 2 and dy[y][0] != x and dy[y][len(dy[y]) - 1] != x
