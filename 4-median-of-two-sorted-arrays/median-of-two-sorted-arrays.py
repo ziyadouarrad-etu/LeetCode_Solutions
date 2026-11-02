@@ -3,28 +3,33 @@ class Solution:
         m = len(nums1)
         n = len(nums2)
 
-        i = 0
-        j = 0
-        l = []
-
-        while (i < m and j < n):
-            if nums1[i] < nums2[j]:
-                l.append(nums1[i])
-                i += 1
-            else:
-                l.append(nums2[j])
-                j += 1
-
-        if (i < m):
-            l.extend(nums1[i:])
-            
-        if (j < n):
-            l.extend(nums2[j:])
-        
         length = m + n
         mid = length // 2
 
-        if length % 2 == 1:
-            return l[mid]
+        i = 0
+        j = 0
+        c = 0
 
-        return (l[mid - 1] + l[mid]) / 2
+        prev = 0
+        curr = 0
+        while (c <= mid):
+            
+            temp1 = nums1[i] if i < m else float("inf")
+                
+            temp2 = nums2[j] if j < n else float("inf")
+
+            prev = curr
+
+            if (temp1 < temp2):
+                curr = temp1
+                i += 1
+            else:
+                curr = temp2
+                j += 1
+            c += 1
+
+
+        if length % 2 == 1:
+            return curr
+
+        return (prev + curr) / 2
