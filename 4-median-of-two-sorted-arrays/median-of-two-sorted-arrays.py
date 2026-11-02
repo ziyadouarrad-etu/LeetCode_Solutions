@@ -16,12 +16,15 @@ class Solution:
                 j += 1
 
         if (i < m):
-            l += nums1[i:]
+            l.extend(nums1[i:])
             
         if (j < n):
-            l += nums2[j:]
+            l.extend(nums2[j:])
         
-        if (n + m)%2 == 1:
-            return l[int((n + m - 1) / 2)] 
-        else:
-            return (l[int((n + m) / 2)] + l[int((n + m - 1) / 2)])/2
+        length = m + n
+        mid = length // 2
+
+        if length % 2 == 1:
+            return l[mid]
+
+        return (l[mid - 1] + l[mid]) / 2
