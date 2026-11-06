@@ -3,31 +3,32 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
+import heapq
+
 class Solution:
-    def mergeKLists(self, lists: list[ListNode | None]) -> ListNode | None:
-        newList = ListNode()
-        temp = newList
+    def mergeKLists(self, lists):
+        heap = []
 
-        while True:
-            idx_min = -1
-            val_min = float("inf")
+        # Insert the first node of each list
+        for i, node in enumerate(lists):
+            if node:
+                heapq.heappush(heap, (node.val, i, node))
 
-            for idx, node in enumerate(lists):
-                if node and node.val < val_min:
-                    idx_min = idx
-                    val_min = node.val
+        dummy = ListNode(0)
+        current = dummy
 
-            if idx_min == -1:
-                break
-                
-            temp.next = ListNode(val_min)
-            temp = temp.next
-            
-            lists[idx_min] = lists[idx_min].next
+        while heap:
+            val, i, node = heapq.heappop(heap)
 
-        return newList.next
+            current.next = node
+            current = current.next
 
+            if node.next:
+                heapq.heappush(
+                    heap,
+                    (node.next.val, i, node.next)
+                )
 
-
-
-        
+        current.next = None
+        return dummy.next
