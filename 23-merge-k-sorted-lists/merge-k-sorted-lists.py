@@ -8,21 +8,18 @@ class Solution:
         newList = ListNode()
         temp = newList
 
-        for L in lists:
-            if L != None:
-                we_good = True
-                break
-
         while True:
-
             idx_min = -1
             val_min = float("inf")
+
             for idx, node in enumerate(lists):
                 if node and node.val < val_min:
                     idx_min = idx
                     val_min = node.val
+
             if idx_min == -1:
                 break
+                
             temp.next = ListNode(val_min)
             temp = temp.next
             
